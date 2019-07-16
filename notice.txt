@@ -1,0 +1,18 @@
+download the AdminLTE
+https://github.com/ColorlibHQ/AdminLTE/releases/tag/v2.4.13
+
+AdminLTE inside all file copy and paste inside of template folder of our project folder Roles-and-permission
+
+admin full permission
+=============================
+login email : dhiraj@gmail.com
+password : 1230
+
+
+user same permission allow to data access.
+======================================
+login email : jay@gmail.com
+password : 1230
+
+
+database name : adminpanel
