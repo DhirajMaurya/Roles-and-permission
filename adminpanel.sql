@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2019 at 11:57 AM
+-- Generation Time: Jul 29, 2019 at 12:18 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -33,13 +33,6 @@ CREATE TABLE `company` (
   `Cname` varchar(25) NOT NULL,
   `Cstatus` tinyint(1) NOT NULL COMMENT '1-->Active,0-->Deactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `company`
---
-
-INSERT INTO `company` (`Cid`, `Cname`, `Cstatus`) VALUES
-(1, 'DNK Technologies Private ', 1);
 
 -- --------------------------------------------------------
 
@@ -74,7 +67,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`Eid`, `Ename`, `Egender`, `Edob`, `Edesignation`, `Epost`, `Ehobby`, `Eemail`, `Emobile`, `Epassword`, `Ephoto`, `Eaddress`, `Equalification`, `Eexperience`, `Ejoindate`, `Ejoinletter`, `Edateregister`, `Eupdatedate`, `Estatus`) VALUES
-(1, 'Dhiraj', 1, '1997-06-03', 'Team Member', '', 'Reading,Music', 'dhiraj@gmail.com', '9874563211', '202cb962ac59075b964b07152d234b70', 'c6f6ec4b2b7f5aa0f210a5d24fa5c91c.png', 'dindoli', 'Graduation', 0, '0000-00-00', '', '2019-07-03 15:35:06', '2019-07-08 17:46:30', 1),
+(1, 'soni', 1, '1997-06-03', 'Team Member', 'PHP', 'Reading,Music', 'dhiraj@gmail.com', '9874563211', '81dc9bdb52d04dc20036dbd8313ed055', 'cubber_3rd_anniversary-02.png', 'dindoli', 'Graduation', 3, '0000-00-00', '216710_milan.pdf', '2019-07-03 15:35:06', '2019-07-24 12:32:48', 1),
 (2, 'aroma', 2, '1995-02-05', 'Team Member', '', 'Reading,Music', 'roma@gmail.com', '9874563210', '250cf8b51c773f3f8dc8b4be867a9a02', '5531dd0a795481ff0bf54e5e85c0d5f4.jpg', 'mota varachha', 'Graduation', 3, '0000-00-00', '', '2019-07-03 15:36:20', '2019-07-04 17:19:48', 1),
 (3, 'sanjay', 1, '2008-01-01', 'Team Member', '', 'Reading,Writing', 'sanjay@gmail.com', '7894563210', '8d5e957f297893487bd98fa830fa6413', 'acf2693d987857301663957868dd0a40.png', 'athwaline,surat', '10+2th', 2, '0000-00-00', '', '2019-07-03 15:36:21', '2019-07-04 11:43:21', 0),
 (4, 'roma', 2, '1995-02-05', 'Team Member', '', 'Music', 'roma@gmail.com', '9874563210', '4122cb13c7a474c1976c9706ae36521d', '6f273156b8a9b34bce6cb45c7ce31a27.jpg', 'mota varachha', 'Graduation', 2, '0000-00-00', '', '2019-07-03 13:49:25', '2019-07-04 11:44:13', 1),
@@ -85,7 +78,6 @@ INSERT INTO `employee` (`Eid`, `Ename`, `Egender`, `Edob`, `Edesignation`, `Epos
 (9, 'virat', 1, '2019-06-01', 'Team Leader', '', 'Reading,Music', 'virat@gmail.com', '9561230789', 'd67ac35a9a6be831e5b6562765de83a3', 'a6334aba45b6f95524bd38411d2e6a16.png', 'xyz, surat', '10+2th', 5, '0000-00-00', '', '2019-07-03 13:49:45', '2019-07-04 11:58:52', 1),
 (10, 'om', 1, '2000-11-02', 'Clark', '', 'Writing', 'om@gmail.com', '7845120369', 'e8d672860174085d43be53a7d76a75ce', 'fb37c922ae7d1e5c08e29c1380ac03ff.jpg', 'kapodar,utran,surat', '10+2th', 3, '0000-00-00', '', '2019-07-03 15:36:16', '2019-07-04 11:47:32', 1),
 (11, 'Shani', 1, '1993-02-05', 'Manager', '', 'Reading,Writing', 'shani@gmail.com', '9874563215', '7812e8b74f6837fba66f86fe86688a2b', '242d58d3e8f60bf7bb4c7fd2283f6fea.jpg', 'kapodar,mota varachha,surat', 'Post Graduation', 4, '0000-00-00', '', '2019-07-03 13:49:56', '2019-07-04 11:48:25', 1),
-(12, 'hema', 2, '1993-05-01', 'Team Leader', '', 'Writing,Music', 'hema@gmail.com', '7896544569', '68053af2923e00204c3ca7c6a3150cf7', 'e0fe402cd4ea6cff0c9ead2a5dfbc68d.gif', 'absdbnbb', '10+2th', 5, '0000-00-00', '', '2019-07-03 13:50:00', '2019-07-04 11:48:40', 0),
 (13, 'mala', 2, '1990-12-31', 'Manager', '', 'Reading,Music', 'mala@gmail.com', '6789654123', '66421bf507347e6172724796d232a4a3', 'a8aca1bf99a15f4b67c08a0364412275.png', 'abc\r\n', 'Graduation', 3, '0000-00-00', '', '2019-07-03 13:50:05', '2019-07-04 11:49:05', 1),
 (14, 'sandip', 1, '1995-01-07', 'Team Leader', '', 'Reading', 'sandip@gmail.com', '7896547896', '68053af2923e00204c3ca7c6a3150cf7', '1afe3d8814f153e9c04dcc52ec74f821.png', 'surat', 'Graduation', 3, '0000-00-00', '', '2019-07-03 13:50:10', '2019-07-04 11:51:05', 0),
 (15, 'rima', 2, '1992-12-31', 'Manager', '', 'Writing', 'rima@gmail.com', '7894564789', '1816ac0b4bf213b0cfaacd48b6127f12', 'b9de638afd24eb8fdc3dd7aac9991072.jpg', 'rajkot', '10+2th', 4, '0000-00-00', '', '2019-07-03 13:50:15', '2019-07-04 11:51:50', 0),
@@ -108,7 +100,9 @@ INSERT INTO `employee` (`Eid`, `Ename`, `Egender`, `Edob`, `Edesignation`, `Epos
 (36, 'fahim', 1, '1995-06-07', 'Team Leader', '', 'Reading', 'fahim@gmail.com', '6789541230', '202cb962ac59075b964b07152d234b70', 'c3ffed1cc67ddec9246858618814c622.jpg', 'sachin,surat', 'Graduation', 1, '0000-00-00', '', '2019-07-06 12:03:29', '2019-07-06 17:40:46', 1),
 (37, 'hitesh desai', 1, '2019-10-07', 'Team Leader', '', 'Reading,Writing,Music', 'hiteshji@gmail.com', '9874563200', '202cb962ac59075b964b07152d234b70', '67e2d32b3f14567f69a94afea573051b.jpg', 'mota varachha,surat,gujarat', 'Post Graduation', 5, '0000-00-00', '', '2019-07-08 11:17:20', '2019-07-11 10:55:40', 1),
 (40, 'Asha swani', 2, '1993-02-02', 'Team Member', 'Graphics Designer', 'Reading,Writing', 'asha@gmail.com', '7896541230', '4122cb13c7a474c1976c9706ae36521d', '1682b80a9ddd972193528a58e3989e8c.png', 'kadodara,surat', 'Graduation', 2, '2019-07-15', 'Asha swani_11-07-2019.pdf', '2019-07-11 12:10:54', '0000-00-00 00:00:00', 0),
-(42, 'Martin', 1, '2019-02-01', 'Team Leader', 'Graphics Designer', 'Reading,Music', 'martin_k@gmail.com', '9874563210', '925d7518fc597af0e43f5606f9a51512', '88a2b3d51d4c28bb2239411a54329549.png', 'Brisban.', '10+2th', 2, '2019-07-12', 'Martin_11-07-2019.pdf', '2019-07-11 12:32:49', '2019-07-16 14:06:06', 1);
+(42, 'Martin', 1, '2019-02-01', 'Team Leader', 'Graphics Designer', 'Reading,Music', 'martin_k@gmail.com', '9874563210', '925d7518fc597af0e43f5606f9a51512', '88a2b3d51d4c28bb2239411a54329549.png', 'Brisban.', '10+2th', 2, '2019-07-12', 'Martin_11-07-2019.pdf', '2019-07-11 12:32:49', '2019-07-18 16:22:52', 1),
+(44, 'soni shah', 2, '1970-01-01', 'Manager', 'Web Designer', 'Reading', 'rohit@gmail.com', '9874521036', '81dc9bdb52d04dc20036dbd8313ed055', 'ea5f479f99aa4d06065df14b55f740e7.jpg', 'udhana darwaja,surat', '10th', 3, '2019-07-22', '216710_milan.pdf', '2019-07-19 14:43:53', '2019-07-25 16:45:09', 1),
+(49, 'rohim', 1, '1970-01-01', 'Manager', 'iOS Developer', 'Reading', 'rohit@gmail.com', '9874521036', '81dc9bdb52d04dc20036dbd8313ed055', '398426f508222e8cabf1a4253ab4fedb.png', 'udhana darwaja,surat', '10th', 2, '2019-07-22', 'rest.php', '2019-07-19 17:07:15', '2019-07-25 16:44:22', 0);
 
 -- --------------------------------------------------------
 
@@ -184,8 +178,47 @@ CREATE TABLE `user_login` (
 --
 
 INSERT INTO `user_login` (`Uid`, `Uusername`, `Uname`, `Ugender`, `Uphoto`, `Uemail`, `Umobile`, `Upassword`, `Roleid`, `Uregisterdate`, `Umodifydate`, `Ustatus`) VALUES
-(29, 'dhiraj123', 'Dhiraj', 1, '82bb8508aef978087bdb71a6b10c703c.png', 'dhiraj@gmail.com', '9874563210', '4122cb13c7a474c1976c9706ae36521d', 2, '2019-07-16 14:26:06', '2019-07-16 14:26:06', 1),
-(32, 'jay12', 'jayesh', 1, '3282b9e2860c575ac8ceda53ac752340.png', 'jay@gmail.com', '9874563210', '4122cb13c7a474c1976c9706ae36521d', 4, '2019-07-16 09:59:47', '2019-07-16 09:59:47', 1);
+(1, 'admin123', 'Admin', 1, '0464e93819220fb56aa00f1e4c0dd921.png', 'admin@gmail.com', '9874563210', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2019-07-25 11:54:26', '2019-07-26 12:58:12', 1),
+(2, 'Jay123', 'Jay ', 1, 'ce9ebf9948308008538c7a7e1ca7f697.jpg', 'jay@gmail.com', '7896541230', '4122cb13c7a474c1976c9706ae36521d', 6, '2019-07-25 11:56:41', '0000-00-00 00:00:00', 0),
+(3, 'Anavi123', 'Anavi', 2, '8417c52af54f38981eeab66d48bc415d.png', 'Anavi@gmail.com', '8796541203', '81dc9bdb52d04dc20036dbd8313ed055', 4, '2019-07-25 11:59:08', '0000-00-00 00:00:00', 1),
+(4, 'sem_123', 'sem', 1, '11b7a1fe2c0b352c552b49c8e1e39746.png', 'sem@gmail.com', '6987452130', '4122cb13c7a474c1976c9706ae36521d', 5, '2019-07-25 12:04:21', '0000-00-00 00:00:00', 1),
+(5, 'dhiraj', 'Dhiraj', 1, 'a43c981cb51c337395d85644a1d41bee.png', 'dhiraj@gmail.com', '7895462130', '432639de2357c9d560a9c3d022d3fc8a', 2, '2019-07-29 15:17:03', '2019-07-29 15:17:03', 1),
+(6, 'abc', 'abc', 1, 'b6374c70e03097d488cac66f933cffd7.jpg', 'abc@gmail.com', '7896541230', 'e2fc714c4727ee9395f324cd2e7f331f', 4, '2019-07-29 15:30:21', '2019-07-29 15:30:21', 1),
+(7, 'abc', 'abc', 1, 'b6374c70e03097d488cac66f933cffd7.jpg', 'abc@gmail.com', '7896541230', 'e2fc714c4727ee9395f324cd2e7f331f', 4, '2019-07-25 12:19:08', '2019-07-25 16:35:11', 0),
+(8, 'sunday', 'sunshine', 1, '72302e10e3d2f1494e5a76b534913612.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '2019-07-26 13:59:43', '2019-07-26 13:59:43', 1),
+(9, 'sunday', 'sunshine', 1, '72302e10e3d2f1494e5a76b534913612.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(10, 'sunday', 'sunshine', 1, '72302e10e3d2f1494e5a76b534913612.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(11, 'sunday', 'sunshine', 1, '72302e10e3d2f1494e5a76b534913612.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(12, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(13, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(14, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(15, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(16, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(17, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '2019-07-26 12:57:43', 0),
+(18, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '2019-07-26 12:57:45', 1),
+(19, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '2019-07-26 12:57:47', 0),
+(20, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(21, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(22, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(23, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(24, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(25, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(26, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(27, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(28, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(29, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(30, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(31, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(32, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(33, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(34, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(35, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(36, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(37, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1),
+(38, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '2019-07-26 12:56:48', 0),
+(39, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '2019-07-26 12:56:45', 0),
+(40, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '2019-07-26 12:56:42', 0),
+(41, 'sunday', 'sunshine', 1, 'hjksdh454fdsf.jpg', 'sun@gmail.com', '9000000000', '0000', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -203,17 +236,24 @@ CREATE TABLE `user_perm` (
 --
 
 INSERT INTO `user_perm` (`Uid`, `Permid`) VALUES
-(29, 1),
-(29, 3),
-(29, 4),
-(29, 5),
-(29, 7),
-(29, 8),
-(29, 9),
-(29, 10),
-(29, 11),
-(29, 12),
-(32, 1);
+(1, 1),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(2, 1),
+(2, 3),
+(3, 1),
+(4, 1),
+(4, 3),
+(4, 4),
+(4, 5),
+(6, 1);
 
 --
 -- Indexes for dumped tables
@@ -266,13 +306,13 @@ ALTER TABLE `user_perm`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Cid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `permission`
@@ -290,7 +330,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `Uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `Uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Constraints for dumped tables
