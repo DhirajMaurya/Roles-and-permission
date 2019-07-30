@@ -9,12 +9,26 @@ class AdminModel extends CI_Model
 	{
 		return $this->db->get('permission')->result();
 	}
-	public function admin_list()
+	/*public function admin_list()
 	{
 		$this->db->from('user_login');
 		$this->db->join('role','user_login.Roleid=role.Roleid');
 		return $this->db->get('')->result();
-	}	
+	}*/	
+
+	public function limit_record($limit_per_page=0, $rowno=0, $action)
+	{
+		if($action==1)
+		{
+			$this->db->from('user_login');
+			$this->db->join('role','user_login.Roleid=role.Roleid');
+			return $this->db->order_by('Uid ASC')->get('',$limit_per_page,$rowno)->result();
+		}
+		else
+		{
+			return $this->db->count_all('user_login');
+		}
+	}
 
 	public function admin_insert()
 	{
@@ -100,12 +114,13 @@ class AdminModel extends CI_Model
 		$this->db->join('user_perm','permission.Permid=user_perm.Permid');
 		$this->db->where('user_perm.Uid',$uid);
 		$data=$this->db->get('')->result();
-		foreach ($data as $p) 
-		{
-			$perm[]=$p->Permdesc;
+		if(@$data){
+			foreach ($data as $p) 
+			{
+				$perm[]=$p->Permdesc;
+			}
+			return $perm;
 		}
-		return $perm;
-
 	}
 
 	public function admin_update($id)

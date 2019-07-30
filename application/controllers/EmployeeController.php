@@ -1,4 +1,7 @@
 <?php
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class EmployeeController extends CI_Controller
 {
 	var $perm = array();
@@ -251,6 +254,173 @@ class EmployeeController extends CI_Controller
 		$this->load->view("sidemenu");
 		$this->load->view("employee/emp_attendance");
 		$this->load->view("footer");
+	}
+
+	public function export()
+	{
+		$spreadsheet = new Spreadsheet(); // instantiate Spreadsheet
+        $sheet = $spreadsheet->getActiveSheet();
+        $all_records = $this->EmployeeModel->export();
+        // manually set table data value
+        $sheet->setCellValue('A1', 'Employee Id'); 
+        $sheet->setCellValue('B1', 'Employee Name');
+        $sheet->setCellValue('C1', 'Employee Gender');
+        $sheet->setCellValue('D1', 'Employee DOB');
+        $sheet->setCellValue('E1', 'Employee Designation');
+        $sheet->setCellValue('F1', 'Employee Post');
+        $sheet->setCellValue('G1', 'Employee Hobbies');
+        $sheet->setCellValue('H1', 'Employee EmailId');
+        $sheet->setCellValue('I1', 'Employee Mobile');
+        $sheet->setCellValue('J1', 'Employee Address');
+        $sheet->setCellValue('K1', 'Employee Qualification');
+        $sheet->setCellValue('L1', 'Employee Experience (Year)');
+        $sheet->setCellValue('M1', 'Employee Join Date');
+        $sheet->setCellValue('N1', 'Employee Status');
+        
+        $count_row=2;
+        foreach ($all_records as $record) {
+	        $sheet->setCellValue('A'.$count_row, $record->Eid); 
+	        $sheet->setCellValue('B'.$count_row, $record->Ename);
+	        if($record->Egender==1){
+	        	$gender = 'Male';
+	        }else if($record->Egender==2){
+	        	$gender = 'Female';
+	        }else if($record->Egender==3){
+	        	$gender = 'Other';
+	        }
+	        $sheet->setCellValue('C'.$count_row, $gender);
+	        $sheet->setCellValue('D'.$count_row, $record->Edob);
+	        $sheet->setCellValue('E'.$count_row, $record->Edesignation);
+	        $sheet->setCellValue('F'.$count_row, $record->Epost);
+	        $sheet->setCellValue('G'.$count_row, $record->Ehobby);
+	        $sheet->setCellValue('H'.$count_row, $record->Eemail);
+	        $sheet->setCellValue('I'.$count_row, $record->Emobile);
+	        $sheet->setCellValue('J'.$count_row, $record->Eaddress);
+	        $sheet->setCellValue('K'.$count_row, $record->Equalification);
+	        $sheet->setCellValue('L'.$count_row, $record->Eexperience);
+	        $sheet->setCellValue('M'.$count_row, $record->Ejoindate);
+	        if($record->Estatus==1){
+	        	$status='Active';
+	        }else{
+	        	$status='Deactive';
+	        }
+	        $sheet->setCellValue('N'.$count_row, $status);
+	        $count_row++;	
+        }
+        $spreadsheet->getActiveSheet()->getStyle('A1:N1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLUE);
+        $spreadsheet->getActiveSheet()->setAutoFilter('A1:N1');
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
+        $writer = new Xlsx($spreadsheet); // instantiate Xlsx
+ 
+        $filename = 'employee_list_'.date('d_m_Y'); // set filename for excel file to be exported
+        header('Content-Type: application/vnd.ms-excel'); // generate excel file
+        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+        
+        $writer->save('php://output');	// download file
+	}
+	
+
+	function import()
+	{
+		$data = array();
+		if(!empty($_FILES['fileURL']['name'])) 
+		{ 
+        	// get file extension
+        	$extension = pathinfo($_FILES['fileURL']['name'], PATHINFO_EXTENSION);
+        	if($extension == 'csv'){
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+			} elseif($extension == 'xlsx') {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+			}
+			// file path
+			$spreadsheet = $reader->load($_FILES['fileURL']['tmp_name']);
+			// $allDataInSheet = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+			// array Count
+			/*$arrayCount = count($allDataInSheet);
+            $flag = 0;*/
+
+			$worksheet = $spreadsheet->getActiveSheet();
+			$highestRow = $worksheet->getHighestRow(); // e.g. 10
+			//$highestColumn = $worksheet->getHighestColumn(); // e.g 'F'
+			//$highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn); // e.g. 5
+
+			for ($row = 2; $row <= $highestRow; ++$row) 
+			{
+			       $id = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+			       $name = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+			       $gender = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+			       $dob = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+			       $des = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+			       $post = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+			       $hobby = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+			       $email = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+			       $mobile = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+			       $address = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+			       $qual = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
+			       $ex = $worksheet->getCellByColumnAndRow(12, $row)->getValue();
+			       $jdate = $worksheet->getCellByColumnAndRow(13, $row)->getValue();
+			       $status = $worksheet->getCellByColumnAndRow(14, $row)->getValue();
+			       if($gender=='Male'){
+			       		$gen=1;
+			       }elseif ($gender=='Female') {
+			       		$gen=2;
+			       }elseif ($gender=='Other') {
+			       		$gen=3;
+			       }
+
+			       if($status=='Active'){
+			       		$st=1;
+			       }elseif($status=='Deactive'){
+			       		$st=0;
+			       }
+			       $edata=$this->db->get_where('employee',['Emobile' => $mobile])->row();
+				   if(empty($edata)){
+			       			$data[]=array(
+			       					"Ename"=>$name,
+			       					"Egender"=>$gen,
+			       					"Edob"=>$dob,
+			       					"Edesignation"=>$des,
+			       					"Epost"=>$post,
+			       					"Ehobby"=>$hobby,
+			       					"Eemail"=>$email,
+			       					"Epassword"=>md5(''),
+			       					"Emobile"=>$mobile,
+			       					"Eaddress"=>$address,
+			       					"Equalification"=>$qual,
+			       					"Eexperience"=>$ex,
+			       					"Ejoindate"=>$jdate,
+			       					"Edateregister"=>date('Y-m-d H:i:s'),
+			       					"Estatus"=>$st
+			       					);
+			       	}
+			}
+
+		}
+
+		$return_data=$this->EmployeeModel->import($data);
+		if ($return_data==0) 
+		{
+			$this->session->set_flashdata('emessage','Dublicate record not allow...');
+		}else{
+			$this->session->set_flashdata('message','Successfully imports all record...');
+		}
+		redirect('EmployeeController');
 	}
 }
 

@@ -128,10 +128,10 @@
       var lpass = $("#lpass").val();
       var ep = /[a-zA-Z0-9]+\@gmail.com$/;
       $("#error").remove();
-      if(lemail=="" || !lemail.match(ep))
+      if(lemail=="")
       {
         $("#lemail").focus();
-        $("#lemail").after("<span class='text-danger small' id='error'>Enter valid amail Aaddress.</span>");
+        $("#lemail").after("<span class='text-danger small' id='error'>Enter valid Emailid or Username.</span>");
         return false;
       }
       else if(lpass=="" || lpass.length < 4)

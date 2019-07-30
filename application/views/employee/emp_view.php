@@ -146,6 +146,7 @@
                 <option value="100" <?php if(isset($_GET['show_records'])) { echo ($_GET['show_records']==100)?'selected':'';}?>>100</option>
                 <option value="-1" <?php if(isset($_GET['show_records'])) { echo ($_GET['show_records']=='-1')?'selected':'';}?>>All</option>
               </select>
+              <a href="<?php echo site_url().'EmployeeController/export/' ?>" class="btn btn-primary" style="margin-left: 50px;" title='Export Data in Excel-Sheet'>Export</a>
               </div>
               <div class="col-md-4">
                 <?php
@@ -298,6 +299,11 @@
               </table>
             <div id="loader-icon" style="left: 0;top: 40%;width:100%;height:100%;text-align:center;display:none;">
               <img src="<?php echo base_url().'imagesbook/loading/';?>loader11.gif" width="120px"/>
+            </div>
+            <div class="form-inline form-group pull-left">
+              <form method="post" enctype="multipart/form-data" action="<?php echo site_url().'EmployeeController/import/' ?>">
+                <input type="file" name="fileURL" class="form-control" required><input type="submit" class="btn btn-primary" value="Import">
+              </form>
             </div>
             <div style="margin: 20px 0;">
               <?php 

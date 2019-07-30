@@ -32,7 +32,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="uname">Username <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter Username.">
+                      <input type="text" onchange="username_exit(this.value);" class="form-control" id="uname" name="uname" placeholder="Enter Username.">
                     </div>
                     
                     <div class="form-group">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group">
                       <label for="uemail">Email address <span class="text-danger">*</span></label>
-                      <input type="email" class="form-control" id="uemail" name="uemail" placeholder="Enter email">
+                      <input type="email" onchange="email_exit(this.value);" class="form-control" id="uemail" name="uemail" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                       <label for="upass">Password <span class="text-danger">*</span></label>
@@ -106,8 +106,13 @@
                         <option value="0">Deactive</option>
                       </select>
                     </div>
-                    
-                    
+                    <div class="form-group">
+                      <label for="cap_value">Captcha Type <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="cap_value" placeholder="Enter Captcha Code.">
+                    </div>
+                    <span id="cap_image"><?php echo $cimage;?></span>
+                    <font class="h3" onclick="change_captcha()"><i class="fa fa-fw fa-refresh"></i></font>
+                    <input type="hidden" id="captcha_check" value="<?php echo $cvalues;?>">
 
                   </div>
                 </div>
@@ -134,6 +139,48 @@
   <!-- /.content-wrapper -->
 
   <script>
+    function email_exit(email) {
+      $("#error").remove();
+      $.ajax({
+              url:"<?php echo site_url().'AdminController/email_exit'?>",
+              method:"post",
+              data:{email},
+              success:function(res)
+              {
+                if(res==1)
+                {
+                  $('#uemail').val('');
+                  $("#uemail").focus();
+                  $("#uemail").after("<small class='text-danger' id='error'>This Emailid is allready exit.</small>");
+                }
+                else{
+                  $("#error").remove();
+                }
+              }
+      });
+    }
+
+    function username_exit(uname) {
+      $("#error").remove();
+      $.ajax({
+              url:"<?php echo site_url().'AdminController/username_exit'?>",
+              method:"post",
+              data:{uname},
+              success:function(res)
+              {
+                if(res==1)
+                {
+                  $('#uname').val('');
+                  $("#uname").focus();
+                  $("#uname").after("<small class='text-danger' id='error'>This Username is allready taken.</small>");
+                }
+                else{
+                  $("#error").remove();
+                }
+              }
+      });
+    }
+
 
     document.addEventListener('DOMContentLoaded', function() {
         $('#datepicker').datepicker({
@@ -169,6 +216,19 @@
         readURL(this);
     });*/
 
+    function change_captcha()
+    {
+      $.ajax({
+              url:"<?php echo site_url().'AdminController/refresh_captche';?>",
+              success:function(res)
+              {
+                data = JSON.parse(res);
+                $('#captcha_check').val(data.cvalues);
+                $('#cap_image').html(data.cimage);
+              }
+      });
+    }
+
 
     function validation()
     {
@@ -183,16 +243,19 @@
       var photo = $("#uphoto").val();
       var role = $("#urole").val();
       var status = $("#ustatus").val();
-      var unp = /^[a-zA-Z0-9 ]+$/;
+      var unp = /^[a-zA-Z0-9_]+$/;
       var np = /^[a-zA-Z ]+$/;
       var ep = /[a-zA-Z0-9]+\@gmail.com$/;
       var mp = /^[9876][0-9]{9}$/;
+
+      var cap_value = $("#cap_value").val();
+      var captcha_check = $("#captcha_check").val();
 
       if (uname == "" || !uname.match(unp)) 
       {
         //alert();
         $("#uname").focus();
-        $("#uname").after("<small class='text-danger' id='error'>Enter username(Special charecter not allow).</small>");
+        $("#uname").after("<small class='text-danger' id='error'>Enter username(Special charecter not allow)(_).</small>");
         return false;
       }
       else if (ufname == "" || !ufname.match(np)) 
@@ -249,5 +312,13 @@
         $(".ustatus").append("<small class='text-danger' id='error'>Select Admin Status.</small>");
         return false;
       }
+      else if (cap_value == "" || !cap_value.match(captcha_check)) 
+      {
+        //alert();
+        $("#cap_value").focus();
+        $("#cap_value").after("<small class='text-danger' id='error'>Enter below show captcha cade.</small>");
+        return false;
+      }
+
     }
   </script>

@@ -72,7 +72,7 @@
                       <div class="table-bordered" style="padding: 15px;"  id="herror">
                       <?php foreach($perm_data as $perm_data){ ?>
                         <label>
-                          <input type="checkbox" class="minimal" name="perm[]" value="<?php echo($perm_data->Permid);?>" <?php echo (in_array($perm_data->Permdesc,$user_perm))?'checked':'';?> ><?php echo($perm_data->Permdesc);?>
+                          <input type="checkbox" class="minimal" name="perm[]" value="<?php echo($perm_data->Permid);?>" <?php if(@$user_perm){ echo (in_array($perm_data->Permdesc,$user_perm))?'checked':''; } ?> ><?php echo($perm_data->Permdesc);?>
                         </label><br>
                       <?php } ?>
                       </div>

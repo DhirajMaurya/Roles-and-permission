@@ -3,10 +3,12 @@ class RNPModel extends CI_Model
 {
 	public function view_roles()
 	{
+		$this->db->order_by('Rolename','ASC');
 		return $this->db->get('role')->result();
 	}
 	public function view_permission()
 	{
+		$this->db->order_by('Permdesc','ASC');
 		return $this->db->get('permission')->result();
 	}
 	public function add_role()

@@ -1,6 +1,22 @@
 <?php
 class EmployeeModel extends CI_Model
 {
+	public function export()
+	{
+		return $this->db->get('employee')->result();
+	}
+	public function import($data)
+	{
+		/*foreach ($data as $single) 
+		{
+			$edata=$this->db->get_where('employee',['Emobile' => $single['Emobile']])->row();
+		*/	if(!empty($data)){
+				$this->db->insert_batch('employee',$data);
+			}
+		//}
+		return $this->db->insert_id('employee');
+
+	}
 	public function get_current_page_records($limit,$start,$per)
 	{
 		if(isset($_GET['ename']))

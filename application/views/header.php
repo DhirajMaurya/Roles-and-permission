@@ -277,7 +277,7 @@
                 <img src="<?php echo base_url().'imagesbook/admin_photo/'.$this->session->userdata('uphoto');?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $this->session->userdata('uname');?> - Web Developer
+                  <?php echo $this->session->userdata('uname').' - '.$this->session->userdata('urole_name');?>
                   <small><?php echo $this->session->userdata('uemail');?></small>
                 </p>
               </li>

@@ -32,6 +32,7 @@ class LoginController extends CI_Controller {
 				$this->session->set_userdata('uname',$data->Uname);
 				$this->session->set_userdata('uphoto',$data->Uphoto);
 				$this->session->set_userdata('urole',$data->Roleid);
+				$this->session->set_userdata('urole_name',$data->Rolename);
 				redirect('Dashboard');
 			}
 		}

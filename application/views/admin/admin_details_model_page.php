@@ -56,7 +56,7 @@
           </tr>
           <tr>
             <th>User Permissions</th>
-            <td><?php echo implode(', <br>',$this->session->userdata('uperm')); ?></td>
+            <td><?php if(@$user_perm){ echo implode(', <br>',$user_perm); }else{ echo "-"; } ?></td>
           </tr>
         </table>
       </div>

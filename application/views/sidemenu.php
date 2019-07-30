@@ -80,7 +80,7 @@ else if($this->uri->segment(1)=="RNPController"){
           <ul class="treeview-menu">
             <li class="<?php echo($submenu=='view_roles')?'active':'';?>"><a href="<?php echo site_url().'RNPController/view_roles';?>"><i class="fa fa-circle-o"></i> User Roles</a></li>
             <li class="<?php echo($submenu=='view_perm')?'active':'';?>"><a href="<?php echo site_url().'RNPController/view_permission/';?>"><i class="fa fa-circle-o"></i> Permission</a></li>
-            <li class="<?php echo($submenu=='admin_list')?'active':'';?>"><a href="<?php echo site_url().'AdminController/admin_list/';?>"><i class="fa fa-circle-o"></i> Admin List</a></li>
+            <li class="<?php echo($submenu=='admin_list')?'active':'';?>"><a href="<?php echo site_url().'AdminController/loadRecord/';?>"><i class="fa fa-circle-o"></i> Admin List</a></li>
             
           </ul>
         </li>
@@ -94,7 +94,7 @@ else if($this->uri->segment(1)=="RNPController"){
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo($submenu=='emp_view')?'active':'';?> <?php echo(in_array('emp_view',$uperm)) ? 'show':'hide';?>"><a href="<?php echo site_url().'EmployeeController/emp_view/';?>"><i class="fa fa-circle-o"></i> View Details</a></li>
+            <li class="<?php echo($submenu=='emp_view')?'active':'';?> <?php if(@$uperm){ echo(in_array('emp_view',$uperm)) ? 'show':'hide'; } ?>"><a href="<?php echo site_url().'EmployeeController/emp_view/';?>"><i class="fa fa-circle-o"></i> View Details</a></li>
             <li class="<?php echo($submenu=='attendance')?'active':'';?>"><a href="<?php echo site_url().'EmployeeController/emp_attendance/';?>"><i class="fa fa-circle-o"></i> Attendance Sheet</a></li>
             <li class="<?php echo($submenu=='late_reason')?'active':'';?>"><a href="<?php echo site_url().'EmployeeController/emp_late_reason/';?>"><i class="fa fa-circle-o"></i> Late comes reason report</a></li>
           </ul>
